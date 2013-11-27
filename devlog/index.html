@@ -14,20 +14,21 @@
             background-color:lightGrey;
             margin-bottom:1px;
             cursor:pointer;
+            border: 1px solid lightGrey;
         }
         .version:hover{
-            background-color:lightBlue;
+           border:1px solid lightBlue;
         }
         
         .versionActive{
-            background-color:orange;
+           border : 1px solid orange;
         }
         
         #description{
             position:relative;
-            margin-top: -126px;
+            margin-top: -138px;
             width:700px;
-            height:126px;
+            height:135px;
             border:1px;
             border: 1px solid;
             top: 0px;
@@ -43,12 +44,15 @@
             width: 800px;
             height: 126px;
         }
+        .ready{
+            background-color: lightGreen;
+        }
 	</style>
 </head>
 <body>
         <div id="content">
             <div id="versions">
-                <div id="1" class="version">v0.1</div>
+                <div id="1" class="version ready versionActive">v0.1</div>
                 <div id="2" class="version">v0.2</div>
                 <div id="3" class="version">v0.3</div>
                 <div id="4" class="version">v0.4</div>
@@ -61,7 +65,7 @@
     <script>
         
         var versions = {
-            "v0.1" : " * player (run/fall/jump/pick up) <br> * falling blocks (basics/andomly generated/all blocks are the same) <br> * friendy (just flying around the player)",
+            "v0.1" : " * player (run/fall/jump/pick up) <br> * falling blocks (basics/andomly generated/all blocks are the same) <br> * friendy (just flying around the player)<br>* <a href='../demo/v0.1/index.html'>demo</a>",
             "v0.2" : " * blocks (destruction)<br> * dustructed block (gathering)<br> * gathered block (creation)<br> * inventory (visualisation of players active and passive items)",
             "v0.3" : " * shooting (player can shoot with gathered blocks)",
             "v0.4" : " * blocks nature (every block has its own nature - different gameplay properties)",
@@ -74,11 +78,16 @@
             
             for( var i = 0 ; i < versions.length ; i++ ){
                 var v = versions[i];
-                v.className = "version";
+                var ready = false;
+                if( v.className.indexOf("ready") != -1 )
+                    ready = true;
+                v.className = "version" + (ready ? " ready" : "");
             }
-            
-            this.className = "version versionActive";
-             activateVersion("v0." + this.id);
+            var ready = false;
+            if( this.className.indexOf("ready") != -1 )
+                ready = true;
+            this.className = "version versionActive"+ (ready ? " ready" : "");
+            activateVersion("v0." + this.id);
         }
         
         function assignCallbacks(){
@@ -99,6 +108,7 @@
         
         window.onload = function(){
             assignCallbacks();
+            activateVersion("v0.1");
         }
     </script>
 </body>
