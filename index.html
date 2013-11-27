@@ -24,13 +24,21 @@
 <body>
 	<div class="case">
 		<img src="image.png"/>
-		<p style="text-align:center;font-size:40px; width:400px; margin-left:-30px;font-family:Helvetica"><b>CAN YOU DIG IT?!</b></p><p id="link" style="text-align:center;font-size:35px;color: grey; width:400px; margin-left:-30px;font-family:Helvetica;cursor:pointer;"><b><u>(demo)</u></b></p>
+		<p style="text-align:center;font-size:40px; width:400px; margin-left:-30px;font-family:Helvetica"><b>CAN YOU DIG IT?!</b></p>
+        <p id="demo" style="text-align:center;font-size:35px;color: grey; width:400px; margin-left:-30px;font-family:Helvetica;cursor:pointer;"><b><u>(demo)</u></b></p>
+        <p id="log" style="text-align:center;font-size:35px;color: grey; width:400px; margin-left:-30px;font-family:Helvetica;cursor:pointer;"><b><u>(dev log)</u></b></p>
 	</div>
     <script>
-        function onclick(){
-           location.href = "http://the5thphase.com/demo/v0.1/index.html";
+        function onclickdemo(){
+           location.href = "demo/v0.1/index.html";
         }
-        window.onload = function(){ document.getElementById("link").addEventListener( "click" , onclick , false );}
+        function onclicklog(){
+           location.href = "devlog/index.html";
+        }
+        window.onload = function(){ 
+            document.getElementById("demo").addEventListener( "click" , onclickdemo , false );
+            document.getElementById("log").addEventListener( "click" , onclicklog , false );
+        }
     </script>
 </body>
 </html>

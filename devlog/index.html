@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>5th dev log</title>
+	<style>
+        *{
+            font-family:Helvetica;
+        }
+        
+		.version{
+            width:100px;
+            height:20px;
+            text-align:center;
+            background-color:lightGrey;
+            margin-bottom:1px;
+            cursor:pointer;
+        }
+        .version:hover{
+            background-color:lightBlue;
+        }
+        
+        .versionActive{
+            background-color:orange;
+        }
+        
+        #description{
+            position:relative;
+            margin-top: -126px;
+            width:700px;
+            height:126px;
+            border:1px;
+            border: 1px solid;
+            top: 0px;
+            left: 120px;
+        }
+        #content{
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            margin: auto;
+            width: 800px;
+            height: 126px;
+        }
+	</style>
+</head>
+<body>
+        <div id="content">
+            <div id="versions">
+                <div id="1" class="version">v0.1</div>
+                <div id="2" class="version">v0.2</div>
+                <div id="3" class="version">v0.3</div>
+                <div id="4" class="version">v0.4</div>
+                <div id="5" class="version">v0.5</div>
+                <div id="6" class="version">v0.6</div>
+            </div>
+            
+            <div id="description"></div>
+        </div>
+    <script>
+        
+        var versions = {
+            "v0.1" : " * player (run/fall/jump/pick up) <br> * falling blocks (basics/andomly generated/all blocks are the same) <br> * friendy (just flying around the player)",
+            "v0.2" : " * blocks (destruction)<br> * dustructed block (gathering)<br> * gathered block (creation)<br> * inventory (visualisation of players active and passive items)",
+            "v0.3" : " * shooting (player can shoot with gathered blocks)",
+            "v0.4" : " * blocks nature (every block has its own nature - different gameplay properties)",
+            "v0.5" : " * multiplayer",
+            "v0.6" : " * prerelease tinsel"
+        }
+        
+        function choseVersion(){
+            var versions = document.getElementsByClassName("version");
+            
+            for( var i = 0 ; i < versions.length ; i++ ){
+                var v = versions[i];
+                v.className = "version";
+            }
+            
+            this.className = "version versionActive";
+             activateVersion("v0." + this.id);
+        }
+        
+        function assignCallbacks(){
+             var versions = document.getElementsByClassName("version");
+            
+            for( var i = 0 ; i < versions.length ; i++ ){
+                var v = versions[i];
+                v.addEventListener( "click" , choseVersion , false );
+            }
+            
+           
+        }
+        
+        function activateVersion( number ){
+            var d = document.getElementById("description");
+            d.innerHTML = versions[ number ];
+        }
+        
+        window.onload = function(){
+            assignCallbacks();
+        }
+    </script>
+</body>
+</html>
